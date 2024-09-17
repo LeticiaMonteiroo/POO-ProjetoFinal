@@ -1,13 +1,13 @@
-<template>
-   <div class="containerLogin">
+<<template>
+  <div class="containerLogin">
     <div class="left-panel">
       <h1 class="titulo">
-        <span class="text-UnB">Papelaria</span><span class="text-Connect">Lale</span>
+        <span class="text-papelaria">Papelaria</span><span class="text-lale">Lale</span>
       </h1>
     </div>
     <div class="right-panel">
       <h3 class="form-title">Acesse sua Conta</h3>
-      <form class="login-form" @submit.prevent="submitForm">
+      <form class="login-form" @submit.prevent="handleLogin">
         <label for="email">E-mail</label>
         <input type="email" v-model="email" id="email" name="email" placeholder="Email" class="form-element">
         
@@ -24,7 +24,7 @@
           <router-link to="/cadastro" class="entrar-link">Cadastre-se</router-link>
         </p>
       </form>
-      <img src="/src/assets/NovoIcon.ico" alt="Logo UnB" class="unb-logo">
+      <img src="/src/assets/NovoIcon.ico" alt="Logo Papelaria" class="papelaria-logo">
     </div>
   </div>
 
@@ -62,7 +62,7 @@ export default {
 
     async submitForm() {
       try {
-        const response = await axios.post('http://localhost:8000/api/token/', {
+        const response = await axios.post('http://localhost:9000/api/token/', {
           username: this.email,
           password: this.password
         });
@@ -94,7 +94,7 @@ export default {
 /* Painel Esquerdo */
 .left-panel {
   flex: 3;
-  background-color: #f0f0f0;
+  background-color: #fffafa;  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -103,21 +103,22 @@ export default {
 }
 
 .left-panel h1 {
-  color: #f4d016;
-  font-size: 100px;
+  font-size: 5vw; 
+  color: #4B0082;
+  margin: 0;
 }
 
-.text-UnB {
-  color: #720372;
+.text-papelaria {
+  color: #cb6ce6;
 }
 
 
 .left-panel p {
-  color: #f3da5d;
+  color: #fffafa;
   font-size: 14px;
 }
 
-.unb-logo {
+.papelaria-logo {
   width: 50px;
   height: auto;
   position: absolute;
@@ -130,7 +131,7 @@ export default {
 /* Painel Direito */
 .right-panel {
   flex: 1;
-  background-color: #cb6ce6;
+  background-color: #cb6ce6;;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -140,7 +141,7 @@ export default {
 }
 
 .right-panel h3 {
-  color: #f3da5d;
+  color: #fffafa;
   margin-top: 0;
   margin-bottom: 40px;
   font-size: 24px;
@@ -169,7 +170,7 @@ export default {
 
 /* Estilo do botão "Entrar" */
 .login-form .btn-entrar {
-  background-color: #720372; 
+  background-color: #4B0082; 
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -186,7 +187,7 @@ export default {
 }
 
 .login-form .btn-entrar:active {
-  background-color: #0f551e;
+  background-color: #DDA0DD;
   transform: translateX(5px);
 }
 
@@ -217,6 +218,8 @@ export default {
 .cadastro-page a {
   color: #f4d016;
   text-decoration: none;
+  font-weight: bold;
+
 }
 
 /* Linha vertical no painel direito */
@@ -232,7 +235,7 @@ export default {
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .container {
+  .containerLogin {
     flex-direction: column;
   }
 
@@ -245,21 +248,9 @@ export default {
   .right-panel {
     padding: 20px;
   }
-}
-/* Responsividade */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
 
-  .left-panel, .right-panel {
-    flex: none;
-    width: 100%;
-    height: auto;
-  }
-
-  .right-panel {
-    padding: 20px;
+  .papelaria-logo {
+    display: none;
   }
 }
 </style>
