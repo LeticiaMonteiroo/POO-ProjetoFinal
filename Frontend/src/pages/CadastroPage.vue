@@ -1,0 +1,273 @@
+<template>
+  <div class="container">
+    <div class="left-panel">
+      <h1 class="titulo">
+        <span class="text-UnB">Papelaria</span><span class="text-Connect">Lale</span>
+      </h1>
+    </div>
+    <div class="right-panel">
+      <h3 class="form-title">Registre-se</h3>
+      <form class="cadastro-form" @submit.prevent="submitForm">
+        <label for="nomecompleto">Nome completo</label>
+        <input type="text" id="nomecompleto" v-model="form.nomeCompleto" placeholder="Nome completo" class="form-element">
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" v-model="form.email" placeholder="Seu e-mail" class="form-element">
+
+        <label for="password">Digite sua senha</label>
+        <input type="password" id="password" v-model="form.password" placeholder="Digite sua senha" class="form-element">
+
+        <label for="confirm_password">Confirme sua senha</label>
+        <input type="password" id="confirm_password" v-model="form.confirmPassword" placeholder="Confirme sua senha" class="form-element">
+
+        <!-- <label for="semestre">Selecione o Semestre</label>
+        <select id="semestre" v-model="form.semestre" class="form-element">
+          <option value="" disabled>Selecione um semestre</option>
+          <option v-for="semestre in semestres" :key="semestre" :value="semestre">{{ semestre }}º Semestre</option>
+        </select> -->
+
+
+        <button type="submit" class="btn-cadastrar form-element">Cadastrar</button>
+
+        <div class="separator"></div>
+        <p class="Login-page">Já tem uma conta? 
+          <router-link to="/login" class="entrar-link">Entrar</router-link>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <SuccessMessageModal
+      v-if="isModalVisible"
+      :show="isModalVisible"
+      message="Cadastro efetuado com sucesso!!"
+      @close="isModalVisible = false"
+    />
+</template>
+
+<script>
+import axios from 'axios';
+import SuccessMessageModal from '../components/SuccessMessageModal.vue';
+
+export default {
+  name: 'RegisterForm',
+
+  components: {
+    SuccessMessageModal
+  },
+
+  data() {
+    return {
+      isModalVisible: false,
+      form: {
+        nomeCompleto: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        semestre: ''
+      },
+      semestres: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    };
+  },
+  methods: {
+    sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    },
+
+    async submitForm() {
+      if (this.form.password !== this.form.confirmPassword) {
+        alert("As senhas não coincidem!");
+        return;
+      }
+      console.log("Formulário enviado:", this.form);
+      try {
+        await axios.post('http://localhost:8000/api/users/', {
+          name: this.form.nomeCompleto,
+          email: this.form.email,
+          password: this.form.password
+        });
+
+        this.isModalVisible = true
+        await this.sleep(2000);
+        
+        this.$router.push({ name: 'Login' });
+      } catch (err) {
+        this.error = 'Invalid credentials';
+      }
+    }
+  }
+}
+</script>
+
+<style>
+/* Importação das fontes */
+
+
+/* Estilos gerais */
+body {
+  background-color: #EAEAEA;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Painel Esquerdo */
+.left-panel {
+  flex: 3;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.left-panel h1 {
+  color: #f4d016;
+  font-size: 100px;
+}
+
+.text-UnB {
+  color: #720372;
+}
+
+.left-panel p {
+  color: #4B0082;
+  font-size: 14px;
+}
+
+.unb-logo {
+  width: 50px;
+  height: auto;
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10%;
+}
+
+/* Painel Direito */
+.right-panel {
+  flex: 1;
+  background-color:  #cb6ce6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.right-panel h3 {
+  color: #f4d016;
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.cadastro-form {
+  width: 75%;
+  max-width: 400px;
+}
+
+/* Estilo comum para inputs, select e botão */
+.cadastro-form .form-element {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.cadastro-form input::placeholder {
+  color: #666;
+}
+
+/* Estilo dos labels */
+.cadastro-form label {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Botão Cadastrar */
+.cadastro-form .btn-cadastrar {
+  background-color: #720372;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cadastro-form .btn-cadastrar:hover {
+  background-color: #400246;; 
+}
+
+.cadastro-form .btn-cadastrar:active {
+  background-color: #400246; /* Verde ainda mais escuro ao clicar */
+  transform: translateY(2px); /* Efeito de clique */
+}
+
+/* Separador */
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: yellow;
+  margin: 20px 0;
+}
+
+/* Estilo para links de registro */
+.Login-page {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: white;
+}
+
+.Login-page a {
+  color: yellow;
+  text-decoration: none;
+}
+
+/* Estilo específico para o link 'Entrar' */
+.entrar-link {
+  color: #28a745; 
+  text-decoration: none;
+}
+
+/* Linha vertical no painel direito */
+.right-panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background-color:  #cb6ce6;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .left-panel, .right-panel {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .right-panel {
+    padding: 20px;
+  }
+}
+
+</style>
