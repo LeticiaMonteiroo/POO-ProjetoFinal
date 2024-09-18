@@ -2,7 +2,7 @@
   <div class="container">
     <div class="left-panel">
       <h1 class="titulo">
-        <span class="text-UnB">Papelaria</span><span class="text-Connect">Lale</span>
+        <span class="text-papelaria">Papelaria</span><span class="text-lale">Lalê</span>
       </h1>
     </div>
     <div class="right-panel">
@@ -19,13 +19,6 @@
 
         <label for="confirm_password">Confirme sua senha</label>
         <input type="password" id="confirm_password" v-model="form.confirmPassword" placeholder="Confirme sua senha" class="form-element">
-
-        <!-- <label for="semestre">Selecione o Semestre</label>
-        <select id="semestre" v-model="form.semestre" class="form-element">
-          <option value="" disabled>Selecione um semestre</option>
-          <option v-for="semestre in semestres" :key="semestre" :value="semestre">{{ semestre }}º Semestre</option>
-        </select> -->
-
 
         <button type="submit" class="btn-cadastrar form-element">Cadastrar</button>
 
@@ -64,9 +57,7 @@ export default {
         email: '',
         password: '',
         confirmPassword: '',
-        semestre: ''
       },
-      semestres: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     };
   },
   methods: {
@@ -81,7 +72,7 @@ export default {
       }
       console.log("Formulário enviado:", this.form);
       try {
-        await axios.post('http://localhost:8000/api/users/', {
+        await axios.post('http://localhost:9000/api/token/', {
           name: this.form.nomeCompleto,
           email: this.form.email,
           password: this.form.password
@@ -100,12 +91,10 @@ export default {
 </script>
 
 <style>
-/* Importação das fontes */
-
 
 /* Estilos gerais */
 body {
-  background-color: #EAEAEA;
+  background-color: #fffafa;
 }
 
 .container {
@@ -116,7 +105,6 @@ body {
 /* Painel Esquerdo */
 .left-panel {
   flex: 3;
-  background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,12 +113,13 @@ body {
 }
 
 .left-panel h1 {
-  color: #f4d016;
-  font-size: 100px;
+  font-size: 5vw; 
+  color: #4B0082;
+  margin: 0;
 }
 
-.text-UnB {
-  color: #720372;
+.text-papelaria {
+  color: #cb6ce6;
 }
 
 .left-panel p {
@@ -138,7 +127,7 @@ body {
   font-size: 14px;
 }
 
-.unb-logo {
+.papelaria-logo {
   width: 50px;
   height: auto;
   position: absolute;
@@ -161,7 +150,7 @@ body {
 }
 
 .right-panel h3 {
-  color: #f4d016;
+  color: #fffafa;
   margin-top: 0;
   margin-bottom: 40px;
   font-size: 24px;
@@ -198,7 +187,7 @@ body {
 
 /* Botão Cadastrar */
 .cadastro-form .btn-cadastrar {
-  background-color: #720372;
+  background-color: #4B0082;
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -207,12 +196,12 @@ body {
 }
 
 .cadastro-form .btn-cadastrar:hover {
-  background-color: #400246;; 
+  background-color: #DDA0DD; 
 }
 
 .cadastro-form .btn-cadastrar:active {
-  background-color: #400246; /* Verde ainda mais escuro ao clicar */
-  transform: translateY(2px); /* Efeito de clique */
+  background-color: #DDA0DD; 
+  transform: translateY(2px);
 }
 
 /* Separador */
@@ -234,12 +223,7 @@ body {
 .Login-page a {
   color: yellow;
   text-decoration: none;
-}
-
-/* Estilo específico para o link 'Entrar' */
-.entrar-link {
-  color: #28a745; 
-  text-decoration: none;
+  font-weight: bold;
 }
 
 /* Linha vertical no painel direito */

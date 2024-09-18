@@ -1,13 +1,13 @@
-<<template>
+<template>
   <div class="containerLogin">
     <div class="left-panel">
       <h1 class="titulo">
-        <span class="text-papelaria">Papelaria</span><span class="text-lale">Lale</span>
+        <span class="text-papelaria">Papelaria</span><span class="text-lale">Lalê</span>
       </h1>
     </div>
     <div class="right-panel">
       <h3 class="form-title">Acesse sua Conta</h3>
-      <form class="login-form" @submit.prevent="handleLogin">
+      <form class="login-form" @submit.prevent="submitForm">
         <label for="email">E-mail</label>
         <input type="email" v-model="email" id="email" name="email" placeholder="Email" class="form-element">
         
@@ -74,7 +74,7 @@ export default {
         this.isModalVisible = true
         await this.sleep(2000);
 
-        this.$router.push({ name: 'Meu Fluxo' });
+        this.$router.push({ name: 'Home' });
       } catch (err) {
         this.error = 'Invalid credentials';
       }

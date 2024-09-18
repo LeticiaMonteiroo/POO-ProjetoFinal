@@ -31,7 +31,7 @@
     </div>
     <!-- Slide 2 -->
     <div class="carousel-slide">
-        <img src="../assets/carrossel-image-canetas.webp" alt="Imagem 2">
+        <img src="../assets/carrossel-image-promocao.png" alt="Imagem 2">
     </div>
     <!-- Slide 3 -->
     <div class="carousel-slide">
@@ -313,7 +313,7 @@ justify-content: center;
 
 .carousel-slide img {
 width: 100%;
-height: auto;
+height: 88%;
 object-fit: cover;
 }
 
@@ -340,7 +340,7 @@ right: 10px;
 
 /*seção com marcas que trabalhamos/////////////////////////////////////////////*/
 #marcas {
-    padding: 30px 0;
+    padding: 10px 0;
     text-align: center;
     margin-top: 110px;
 } 

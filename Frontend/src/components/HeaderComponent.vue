@@ -2,7 +2,7 @@
 <template> 
   <header>
     <h1 class="tituloHeader" @click="goToHome">
-      <span class="text-unb">Papelaria</span><span class= "text-Connect">Lale</span>
+      <span class="text-unb">Papelaria</span><span class= "text-Connect">Lalê</span>
     </h1> 
 
     <nav class="header-nav">
