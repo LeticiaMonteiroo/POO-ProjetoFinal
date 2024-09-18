@@ -2,7 +2,7 @@
 <template> 
   <header>
     <h1 class="tituloHeader" @click="goToHome">
-      <span class="text-unb">Papelaria</span><span class= "text-Connect">Lalê</span>
+      <span class="text-papelaria">Papelaria</span><span class= "text-lale">Lalê</span>
     </h1> 
 
     <nav class="header-nav">
@@ -13,14 +13,14 @@
       </ul>
     </nav>
 
-    <div class="header-logout">
-        <img class="header-logout-img" src="../assets/Carrinho.png" @click="gotoCarrinho">
-      </div>
-
     <div class="header-account-actions">
       <div v-if="user_name != null" class="header-account-view">
         <span class="header-account-view-span">{{ user_name }}</span>
         <img class="header-account-view-img" src="../assets/account.png" @click="goToPerfil">
+      </div>
+
+    <div class="header-car">
+        <img class="header-logout-img" src="../assets/Carrinho.png" @click="gotoCarrinho">
       </div>
 
       <div class="header-logout">
@@ -90,7 +90,7 @@ height: 120px;
 cursor: pointer;
 }
 
-.text-unb{
+.text-papelaria{
 color: #cb6ce6;;
 font-size: 36px;
 }
@@ -103,16 +103,11 @@ background-color: #cb6ce6;
 background-color:#DDA0DD;
 
 }
-.text-Connect{
-/* color:	#f17ea1; */
+.text-lale{
 color:beige;
 font-size: 36px;
 }
 
-
-/* .header-logo{
-}
- */
 .header-nav {
   display: flex;
   justify-content: end; /* Alinha os itens do nav para a direita */
@@ -167,6 +162,12 @@ ul {
 
 .header-logout {
   display: flex;
+  margin-left: 20px;
+}
+
+.header-car {
+  gap: 10px;
+  margin-right: 15px;
 }
 
 .header-logout-img {

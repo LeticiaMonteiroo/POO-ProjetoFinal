@@ -27,7 +27,7 @@
     <div class="carousel-content" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
     <!-- Slide 1 -->
     <div class="carousel-slide">
-        <img src="../assets/carrossel-image-caderno.webp" alt="Imagem 1">
+        <img src="../assets/carrossel-image-presentes.webp" alt="Imagem 2">
     </div>
     <!-- Slide 2 -->
     <div class="carousel-slide">
@@ -35,7 +35,7 @@
     </div>
     <!-- Slide 3 -->
     <div class="carousel-slide">
-        <img src="../assets/carrossel-image-presentes.webp" alt="Imagem 2">
+        <img src="../assets/carrossel-image-caderno.webp" alt="Imagem 1">
     </div>
 </div>
     <button class="carousel-button next-button" @click="nextSlide">▶</button>
